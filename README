@@ -1,2 +1,5 @@
 ## Introduction
 This repo is used to test the GraphQL interface instead of REST API
+In nodejs, would use the graphql plugin.
+
+GraphQL：http://www.jianshu.com/p/0343b83e0cbb， the first figure illustrates the struct clearly.

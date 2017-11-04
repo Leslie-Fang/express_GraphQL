@@ -8,6 +8,8 @@ var routes = require('./routes');
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var Schema = require('./graphql/schema');
+var graphqlHTTP = require('express-graphql');
 
 //set the route of the views
 app.set('views','./views');
@@ -22,6 +24,11 @@ app.use(cookieParser());
 app.use('/',routes);
 //static files's routes
 app.use(express.static('public'));
+
+app.use('/GraphiQL', graphqlHTTP({
+    schema: Schema,
+    graphiql: true
+}));
 
 app.listen(conf.port, function () {
     console.log('Example app listening on port '+conf.port+'!');
