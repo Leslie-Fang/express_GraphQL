@@ -4,7 +4,8 @@
   "description": "This repo is used to test the GraphQL interface instead of REST API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:server": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,9 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
-    "graphql": "^0.11.7"
+    "graphql": "^0.11.7",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.0",
+    "nodemon": "^1.12.1"
   }
 }

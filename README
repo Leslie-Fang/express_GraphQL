@@ -3,3 +3,19 @@ This repo is used to test the GraphQL interface instead of REST API
 In nodejs, would use the graphql plugin.
 
 GraphQL：http://www.jianshu.com/p/0343b83e0cbb， the first figure illustrates the struct clearly.
+
+## how to start
+* node app.js
+* npm run dev:server
+
+## use age
+* http://localhost:4000/GraphiQL  // GUI tool to test getting data
+* http://localhost:4000/GraphiQL?query={user(id:1){name}} // get data with GET query
+
+## use GraphiQL
+
+* get single data with query argu:
+{user(id:1){id,name}}
+
+* get all the datas:
+{users{id,name}}

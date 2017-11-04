@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var Schema = require('./graphql/schema');
 var graphqlHTTP = require('express-graphql');
+var graphql = require('graphql');
 
 //set the route of the views
 app.set('views','./views');
@@ -27,7 +28,7 @@ app.use(express.static('public'));
 
 app.use('/GraphiQL', graphqlHTTP({
     schema: Schema,
-    graphiql: true
+    graphiql: true //use the graphiql to debug
 }));
 
 app.listen(conf.port, function () {
