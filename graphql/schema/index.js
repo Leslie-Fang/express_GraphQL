@@ -47,7 +47,7 @@ const RootQuery = new GraphQLObjectType({
             }
         },
         // todo: could add the second one
-        users:{
+        users: {
             type: new GraphQLList(User),
             resolve: function (parentValue, args){
                 return data;
@@ -68,7 +68,7 @@ const RootQuery = new GraphQLObjectType({
                     db.getUserData(resolve,reject,args.id,function(mydata){
                         myData = mydata;
                     });
-                }).then(function(){return myData;});
+                }).then(function(){return myData;},function(){return null;});
             }
         },
     }
