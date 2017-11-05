@@ -10,4 +10,13 @@ $(document).ready(function(){
         var pUser = document.getElementById("userInfo");
         pUser.innerText = result.data.user.name;
     });
+    //insert data into mongo
+    $.ajax({
+        type: "POST",
+        url: "GraphiQL",
+        data: "query=mutation{addUser(id:4,name:\"leslie\"){id,name}}",
+        success: function(data) {
+            alert("sucess");
+        }
+    });
 });

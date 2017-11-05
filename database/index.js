@@ -27,3 +27,19 @@ exports.getUserData = function(resolve,reject,queryArgs,callback){
         });
     });
 };
+
+exports.insertUserData = function(resolve,reject,doc){
+    MongoClient.connect(DB_CONN_STR, function(err, db) {
+        var data = null;
+        // var doc = {"id":4,"name":"leslie"};
+        db.collection('users').insert(doc).then(function(){
+                console.log("success");
+                resolve("success");
+            }, function(){
+                console.log("Failed");
+                reject("Failed");
+            }
+        );
+    });
+
+};

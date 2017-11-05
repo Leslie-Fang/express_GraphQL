@@ -3,7 +3,8 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLList
+    GraphQLList,
+    GraphQLNonNull
 } =  require('graphql');
 
 var db=require('../../database/');
@@ -74,8 +75,39 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+// this mutation to add, update and delete data
+const RootMutation = new GraphQLObjectType({
+    name: 'RootMutation',
+    fields:{
+        addUser: {
+            type: User,
+            args:{
+                id:{type: new GraphQLNonNull(GraphQLInt)},
+                name: {type: new GraphQLNonNull(GraphQLString)}
+            },
+            resolve(parentValue, args) {
+                return new Promise(function(resolve, reject){
+                        var doc = {"id":args.id,"name":args.name};
+                        db.insertUserData(resolve,reject,doc);
+                    }
+                ).then(
+                    function(){
+                        console.log("In resolve, insert success");
+                        return {"id":args.id,"name":args.name};
+                    },
+                    function(){
+                        console.log("In resolve, insert failed");
+                        return null;
+                    }
+                )
+            }
+        }
+    }
+});
+
 const Schema = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: RootMutation
 });
 
 module.exports = Schema;
