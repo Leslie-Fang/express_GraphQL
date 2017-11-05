@@ -10,6 +10,8 @@ router.get('/',function(req,res){
     res.send("Test");
 });
 
-// router.use('/user',user);
+router.get('/user',function(req,res){
+    res.render("main");
+});
 
 module.exports = router;
