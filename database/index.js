@@ -43,3 +43,31 @@ exports.insertUserData = function(resolve,reject,doc){
     });
 
 };
+
+exports.deleteUserData = function(resolve,reject,args){
+    MongoClient.connect(DB_CONN_STR, function(err, db) {
+        db.collection('users').deleteOne({"id":args}).then(function(){
+                console.log("success");
+                resolve("success");
+            }, function(){
+                console.log("Failed");
+                reject("Failed");
+            }
+        );
+    });
+};
+
+exports.updateUserData = function(resolve,reject,args){
+    MongoClient.connect(DB_CONN_STR, function(err, db) {
+        var newName = args.name;
+        db.collection('users').updateOne({"id":args.id},{$set:{'name':newName}})
+            .then(function(){
+                console.log("success");
+                resolve("success");
+            }, function(){
+                console.log("Failed");
+                reject("Failed");
+            }
+        );
+    });
+};

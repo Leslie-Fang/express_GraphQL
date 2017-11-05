@@ -10,13 +10,34 @@ $(document).ready(function(){
         var pUser = document.getElementById("userInfo");
         pUser.innerText = result.data.user.name;
     });
-    //insert data into mongo
+
+    //insert data into mongoDB
+    // $.ajax({
+    //     type: "POST",
+    //     url: "GraphiQL",
+    //     data: "query=mutation{addUser(id:4,name:\"leslie\"){id,name}}",
+    //     success: function(data) {
+    //         console.log("Insert data sucess");
+    //     }
+    // });
+
+    //delete data from mongoDB
+    // $.ajax({
+    //     type: "POST",
+    //     url: "GraphiQL",
+    //     data: "query=mutation{deleteUser(id:4){id}}",
+    //     success: function(data) {
+    //         console.log("Delete data sucess");
+    //     }
+    // });
+
+    // update the data
     $.ajax({
         type: "POST",
         url: "GraphiQL",
-        data: "query=mutation{addUser(id:4,name:\"leslie\"){id,name}}",
+        data: "query=mutation{updateUser(id:4,name:\"leslie\"){id,name}}",
         success: function(data) {
-            alert("sucess");
+            console.log("Update data sucess");
         }
     });
 });

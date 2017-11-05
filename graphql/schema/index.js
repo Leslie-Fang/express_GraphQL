@@ -101,6 +101,47 @@ const RootMutation = new GraphQLObjectType({
                     }
                 )
             }
+        },
+        deleteUser: {
+            type: User,
+            args:{
+                id:{type: new GraphQLNonNull(GraphQLInt)},
+            },
+            resolve(parentValue, args){
+                return new Promise(function(resolve, reject){
+                    console.log("Going to delete the data");
+                    db.deleteUserData(resolve, reject, args.id);
+                }).then(
+                    function(){
+                        console.log("In resolve, insert success");
+                        return {"id":args.id};
+                    },
+                    function(){
+                        console.log("In resolve, insert failed");
+                        return null;
+                    })
+            }
+        },
+        updateUser:{
+            type: User,
+            args:{
+                id: {type: new GraphQLNonNull(GraphQLInt)},
+                name: {type: new GraphQLNonNull(GraphQLString)}
+            },
+            resolve(parentValue, args){
+                return new Promise(function(resolve, reject){
+                    console.log("Going to update the data");
+                    db.updateUserData(resolve, reject, args);
+                }).then(
+                    function(){
+                        console.log("In resolve, update success");
+                        return {"id":args.id,"name":args.name};
+                    },
+                    function(){
+                        console.log("In resolve, update failed");
+                        return null;
+                    })
+            }
         }
     }
 });
